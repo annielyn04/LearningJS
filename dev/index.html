@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+var objCar = {name:"name1", model:"500", color:"white"};
+var d = new Date();
+d = d.getDate();
+</script>
+
+<h2>My First JavaScript</h2>
+
+<!-- Date() gets the datetime of the laptop, not the actual location-->
+<!-- console.log() for console debugging-->
+<button type="button"
+onclick="document.getElementById('demo').innerHTML = d">
+Click me to display Date and Time.</button>
+
+<button type="button"
+onclick="document.getElementById('demo').innerHTML = 'text...'">
+Change demo text</button>
+
+<button type="button" id="hideP"
+onclick="document.getElementById('demo').style.display='none'; 
+this.style.display='none'; 
+document.getElementById('showP').style.display='inline'">
+hides demo p</button>
+
+<button type="button" id="showP"
+onclick="document.getElementById('demo').style.display='block'; 
+this.style.display='none'; 
+document.getElementById('hideP').style.display='inline'">
+shows demo p</button>
+
+
+<p id="demo"></p>
+<!--
+<script>
+document.getElementById("demo").innerHTML = "My First JavaScript";
+document.getElementById('showP').style.display='none';
+</script>
+
+
+<script>
+var objCar = {name:"name1", model:"500", color:"white"};
+document.getElementById('demo').innerHTML=objCar['color'];
+</script>
+-->
+<!--
+SORTING
+<script>
+var points = [40, 100, 1, 5, 25, 10];
+document.getElementById("demo").innerHTML = points;    
+
+function myFunction() {
+    points.sort(function(a, b){return b - a});
+    document.getElementById("demo").innerHTML = points;
+}
+</script>
+-->
+
+</body>
+</html> 

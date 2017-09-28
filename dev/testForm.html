@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script language="Javascript"> 
+	var frenchWords = ['test1', 'test2', 'test3'];
+	var engWords = ['testE1', 'testE2', 'testE3'];
+		
+	function loadFrenchWords()
+	{
+		var FWord = document.getElementById("input_FWord");
+		var EWord = document.getElementById("input_EWord");
+		//^^initialized to clear fields after loading
+		
+		var tbody1 = document.getElementById("vocabulary");
+		//fill the table's first column with the french words
+		var value = "";
+		
+		for(var i=0;i<frenchWords.length;i++)
+		{
+			value = value + "<tr>";
+			value = value + "<td>"+frenchWords[i]+"</td>";
+			value = value + "<td>"+engWords[i]+"</td>";
+			value = value + "<td>";
+			value = value + "<button onclick='editWord("+i+")'>Edit</button>";
+			value = value + "<button onclick='deleteWord("+i+")'>Delete</button>";
+			value = value + "</td>";
+			value = value + "</tr>";			
+		}
+		tbody1.innerHTML = value;
+		FWord.value = "";
+		EWord.value = "";
+	}
+	
+	function addWord()
+	{
+/*		var tbody1 = document.getElementById("vocabulary");
+		//fill the table's first column with the french words
+		var value = "";
+		var FWord = document.getElementById("input_FWord");
+		var EWord = document.getElementById("input_EWord");
+		value = value + "<tr>";
+		value = value + "<td>"+FWord.value+"</td>";
+		value = value + "<td>"+EWord.value+"</td>";
+		value = value + "<td>";
+		value = value + "<button>Edit</button>";
+		value = value + "<button>Delete</button>";
+		value = value + "</td>";
+		value = value + "</tr>";			
+	
+		tbody1.innerHTML = tbody1.innerHTML + value;
+		
+		*/
+		var FWord = document.getElementById("input_FWord");
+		var EWord = document.getElementById("input_EWord");
+		
+		//add/push new words to respective arrays
+		frenchWords.push(FWord.value.trim());
+		engWords.push(EWord.value.trim());
+		
+		loadFrenchWords();
+	}
+	function editWord(index)
+	{
+	//display textbox for editing
+	var editForm = document.getElementById("editForm1").style = "display:inline";
+	document.getElementById("edit_FWord").value = frenchWords[index];
+	document.getElementById("edit_EWord").value = engWords[index];
+	
+	document.getElementById("button_Edit").setAttribute("onClick","edit_row("+index+")");
+	}
+	
+	function hideEditForm()
+	{
+	document.getElementById("editForm1").style = "display:none";
+	}
+	
+	function edit_row(index)
+	{
+	
+	//edit row with inputted values
+	var FWord = document.getElementById("edit_FWord");
+	var EWord = document.getElementById("edit_EWord");
+	
+	frenchWords.splice(index,1, FWord.value.trim());
+	engWords.splice(index,1, EWord.value.trim());
+	
+	loadFrenchWords();
+	//hide textbox for editing
+	document.getElementById("editForm1").style = "display:none";
+	}
+	
+	function deleteWord(index)
+	{
+	frenchWords.splice(index,1);
+	engWords.splice(index,1);
+	loadFrenchWords();
+	
+	}
+</script>
+</head>
+<body onLoad="loadFrenchWords()">
+<h2>CRUD kunohay</h2>
+
+<form action="javascript:void(0);" method="POST" onsubmit="addWord()"> 
+	<input id="input_FWord" type="text" placeholder="New French Word"/>
+	<input id="input_EWord" type="text" placeholder="New English Word"/>
+	<button id="button_Add">Add</button>
+</form>
+<form action="javascript:void(0);" method="POST" id="editForm1" style="display:none"> 
+	<input id="edit_FWord" type="text"/>
+	<input id="edit_EWord" type="text"/>
+	<button id="button_Edit">Edit</button>
+	<a onclick="hideEditForm()" >&#10006;</a>
+</form>
+	<table>
+		<thead>
+			<tr>
+				<th colspan=3>French Words</th>
+			</tr>
+		</thead>
+		
+			<tr>
+				<th>French Word</th>
+				<th>English Translation</th>
+				<th>Actions</th>
+			</tr>	
+		<tbody id = "vocabulary">
+			<!--
+			<tr>
+				<td>word</td>
+				<td>word</td>
+				<td>
+					<button>Edit</button>
+					<button>Delete</button>
+				</td>
+			</tr>	-->
+		</tbody>
+	</table>
+
+
+
+<!--
+<script>
+document.getElementById("demo").innerHTML = "My First JavaScript";
+document.getElementById('showP').style.display='none';
+</script>
+
+
+<script>
+var objCar = {name:"name1", model:"500", color:"white"};
+document.getElementById('demo').innerHTML=objCar['color'];
+</script>
+-->
+<!--
+SORTING
+<script>
+var points = [40, 100, 1, 5, 25, 10];
+document.getElementById("demo").innerHTML = points;    
+
+function myFunction() {
+    points.sort(function(a, b){return b - a});
+    document.getElementById("demo").innerHTML = points;
+}
+</script>
+-->
+
+</body>
+</html> 
